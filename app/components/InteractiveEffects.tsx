@@ -81,6 +81,29 @@ export function InteractiveEffects() {
     return () => observer.disconnect();
   }, []);
 
+  useEffect(() => {
+    const cards = document.querySelectorAll(".work-card, .launch-card");
+
+    const handleMouseMove = (e: MouseEvent) => {
+      const card = e.currentTarget as HTMLElement;
+      const rect = card.getBoundingClientRect();
+      const x = ((e.clientX - rect.left) / rect.width) * 100;
+      const y = ((e.clientY - rect.top) / rect.height) * 100;
+      card.style.setProperty("--mouse-x", `${x}%`);
+      card.style.setProperty("--mouse-y", `${y}%`);
+    };
+
+    cards.forEach((card) => {
+      card.addEventListener("mousemove", handleMouseMove as EventListener);
+    });
+
+    return () => {
+      cards.forEach((card) => {
+        card.removeEventListener("mousemove", handleMouseMove as EventListener);
+      });
+    };
+  }, []);
+
   return (
     <>
       <div ref={cursorRef} className="cursor" />

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <style>
+    body {
+      margin: 20px;
+      background: #f0f0f0;
+      font-family: monospace;
+    }
+    canvas {
+      border: 1px solid #ccc;
+      margin: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h2>Favicon Generator</h2>
+  <p>32x32 favicon:</p>
+  <canvas id="favicon32" width="32" height="32"></canvas>
+  <p>180x180 Apple touch icon:</p>
+  <canvas id="apple180" width="180" height="180"></canvas>
+  <br>
+  <button onclick="download32()">Download favicon-32x32.png</button>
+  <button onclick="download180()">Download apple-touch-icon.png</button>
+
+  <script>
+    // 32x32 favicon
+    const canvas32 = document.getElementById('favicon32');
+    const ctx32 = canvas32.getContext('2d');
+
+    // Background
+    ctx32.fillStyle = '#0a0a0a';
+    ctx32.fillRect(0, 0, 32, 32);
+
+    // Letter "S" in modern style
+    ctx32.fillStyle = '#6366f1';
+    ctx32.font = 'bold 24px -apple-system, BlinkMacSystemFont, sans-serif';
+    ctx32.textAlign = 'center';
+    ctx32.textBaseline = 'middle';
+    ctx32.fillText('S', 16, 17);
+
+    // Accent dot
+    ctx32.fillStyle = '#10b981';
+    ctx32.beginPath();
+    ctx32.arc(25, 7, 2, 0, Math.PI * 2);
+    ctx32.fill();
+
+    // 180x180 Apple touch icon
+    const canvas180 = document.getElementById('apple180');
+    const ctx180 = canvas180.getContext('2d');
+
+    // Background with gradient
+    const gradient = ctx180.createLinearGradient(0, 0, 0, 180);
+    gradient.addColorStop(0, '#0a0a0a');
+    gradient.addColorStop(1, '#141414');
+    ctx180.fillStyle = gradient;
+    ctx180.fillRect(0, 0, 180, 180);
+
+    // Rounded corners for iOS
+    ctx180.globalCompositeOperation = 'destination-in';
+    ctx180.beginPath();
+    ctx180.roundRect(0, 0, 180, 180, 40);
+    ctx180.fill();
+    ctx180.globalCompositeOperation = 'source-over';
+
+    // Subtle grid
+    ctx180.strokeStyle = 'rgba(255, 255, 255, 0.03)';
+    ctx180.lineWidth = 1;
+    for (let i = 0; i < 180; i += 20) {
+      ctx180.beginPath();
+      ctx180.moveTo(i, 0);
+      ctx180.lineTo(i, 180);
+      ctx180.stroke();
+      ctx180.beginPath();
+      ctx180.moveTo(0, i);
+      ctx180.lineTo(180, i);
+      ctx180.stroke();
+    }
+
+    // Large "S"
+    ctx180.fillStyle = '#6366f1';
+    ctx180.font = 'bold 120px -apple-system, BlinkMacSystemFont, sans-serif';
+    ctx180.textAlign = 'center';
+    ctx180.textBaseline = 'middle';
+    ctx180.fillText('S', 90, 95);
+
+    // Accent dot
+    ctx180.fillStyle = '#10b981';
+    ctx180.beginPath();
+    ctx180.arc(140, 40, 8, 0, Math.PI * 2);
+    ctx180.fill();
+
+    function download32() {
+      const link = document.createElement('a');
+      link.download = 'favicon-32x32.png';
+      link.href = canvas32.toDataURL();
+      link.click();
+    }
+
+    function download180() {
+      const link = document.createElement('a');
+      link.download = 'apple-touch-icon.png';
+      link.href = canvas180.toDataURL();
+      link.click();
+    }
+  </script>
+</body>
+</html>

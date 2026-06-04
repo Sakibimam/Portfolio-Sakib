@@ -1,96 +1,73 @@
 import { InteractiveEffects } from "./components/InteractiveEffects";
+import { AnimatedCounter } from "./components/AnimatedCounter";
+import { ThemeToggle } from "./components/ThemeToggle";
 
 const stats = [
-  { number: "30K+", label: "users in 60 days" },
-  { number: "100K", label: "followers, twice" },
-  { number: "25+", label: "partnerships closed" },
+  { number: 26000, suffix: "+", label: "users onboarded" },
+  { number: 120, suffix: "K", label: "volume generated" },
+  { number: 200, suffix: "K+", label: "followers grown" },
 ];
 
 const work = [
   {
     company: "PNP Exchange",
-    role: "Growth and Social Media",
+    role: "Product Marketing & Growth",
     date: "2025-2026",
     description:
-      "Wrote and managed all content on X. Grew the account 4K+ followers organically. Posts hit 84K+ impressions. Ran token incentive campaigns that drove real spikes in trading activity. Closed 6+ integrations through cold outreach.",
-    tags: ["Content", "Growth", "Partnerships", "Web3"],
+      "Drove $50K USDC in prediction market volume through launch copy and token campaigns. Top post hit 84K impressions. Closed 6+ integrations through cold outreach on X.",
+    tags: ["Launch Copy", "Volume Growth", "Web3"],
+    metric: "$50K USDC",
   },
   {
     company: "Stack'em (Eclipse)",
-    role: "Player Growth and Community",
+    role: "Growth & Community",
     date: "2024-2025",
     description:
-      "Onboarded 30,000+ players in 60 days with zero ad spend. Built the distribution strategy from scratch: meme-native content on X, farming campaigns, community activation. Tracked on-chain metrics throughout to understand real retention vs farming behavior.",
-    tags: ["User Acquisition", "Community", "Gaming", "On-chain"],
+      "Onboarded 26,000 players and drove $70K USDT in volume with zero ad spend. Built distribution from scratch: meme-native content, farming campaigns, community activation.",
+    tags: ["User Acquisition", "Volume", "Gaming"],
+    metric: "26K users",
   },
   {
     company: "Instagram Theme Pages",
-    role: "Content and Growth",
+    role: "Organic Growth",
     date: "2022-2024",
     description:
-      "Built two separate theme pages to 100K+ followers each from zero, purely organic. Reached 10M+ impressions per month at peak. Ran both simultaneously while managing posting schedules, engagement, and content strategy.",
+      "Built @makeupviewz and @makeupshall to 100K+ followers each from zero, purely organic. 10M+ monthly impressions at peak. Managed content strategy, posting schedules, engagement simultaneously.",
     tags: ["Instagram", "Organic Growth", "Content"],
+    metric: "200K+ followers",
   },
 ];
 
-const writing = [
+const launchCopy = [
   {
-    title: "PNP Exchange - X Content",
-    sub: "Product announcements, integration launches, campaign copy - live on X",
-    href: "https://x.com/predictandpump",
+    title: "DefiLLama Integration",
+    description: "Product launch that hit 84K impressions",
+    tweetUrl: "https://x.com/predictandpump/status/1972788039325028527",
+    views: "84K",
   },
   {
-    title: "KnowSelf - Personality App",
-    sub: "Built a personality quiz app covering Big Five and Dark Triad - live on Vercel",
-    href: "https://know-self.vercel.app/",
+    title: "YouTube Prediction Markets",
+    description: "New feature announcement",
+    tweetUrl: "https://x.com/predictandpump/status/2044098367492440066",
+    views: "16K",
   },
   {
-    title: "GitHub - Projects",
-    sub: "Three deployed Next.js projects including ShieldScore and PayBridge",
-    href: "https://github.com/Sakibimam",
-  },
-];
-
-const skills = [
-  {
-    title: "Growth",
-    items: [
-      "Organic acquisition",
-      "Token incentive campaigns",
-      "Community-led distribution",
-      "Meme-native content",
-      "X and Instagram growth",
-    ],
+    title: "1000x Launchpad Analysis",
+    description: "Industry thought leadership",
+    tweetUrl: "https://x.com/predictandpump/status/1979561560109445358",
+    views: "5.9K",
   },
   {
-    title: "Writing",
-    items: [
-      "Social copy",
-      "Product announcements",
-      "Ghostwriting",
-      "Technical docs",
-      "Campaign storytelling",
-    ],
+    title: "Turbotap Meme",
+    description: "Community-driven viral content",
+    tweetUrl: "https://x.com/stackem_xyz/status/1910022107460682026",
+    views: "5.6K",
   },
   {
-    title: "BD and Outreach",
-    items: [
-      "Cold outreach",
-      "Partnership closing",
-      "Lead qualification",
-      "Apollo sequences",
-      "Founder communication",
-    ],
-  },
-  {
-    title: "AI Tools",
-    items: [
-      "ChatGPT, Claude",
-      "Midjourney, Canva AI",
-      "Higgsfield, Seedance",
-      "CapCut, Perplexity",
-      "AI-assisted research",
-    ],
+    title: "Community Milestone",
+    description: "Engagement-driven growth post",
+    tweetUrl: "https://x.com/stackem_xyz/status/1899874899155656826",
+    views: "1.1K",
   },
 ];
 
@@ -108,34 +85,48 @@ export default function Home() {
             <a href="#work">Work</a>
           </li>
           <li>
-            <a href="#writing">Writing</a>
+            <a href="#services">Services</a>
+          </li>
+          <li>
+            <a href="#proof">Proof</a>
           </li>
           <li>
             <a href="#contact">Contact</a>
           </li>
         </ul>
+        <ThemeToggle />
       </nav>
 
       <section className="hero" aria-labelledby="hero-title">
-        <p className="hero-tag">Marketer & Ghostwriter</p>
-        <h1 id="hero-title">
-          Growth, words,
+        <p className="hero-tag">Marketer for Crypto & Tech Products</p>
+        <h1 id="hero-title" className="hero-title-animated">
+          I grow products
           <br />
-          <em>and the internet.</em>
+          <span className="gradient-text">organically.</span>
         </h1>
         <p className="hero-bio">
-          I work with early-stage products on{" "}
-          <strong>user growth, content, and distribution</strong>. Onboarded
-          30,000+ users in 60 days with zero ad spend. Grew two Instagram pages
-          to 100K+ followers. Write content that travels. Based in India,
-          working everywhere.
+          Social growth. Community building. Launch copy. Zero ad spend, real traction.
         </p>
+        <div className="hero-stats-inline">
+          <div className="stat-inline">
+            <span className="stat-inline-number">26K+</span>
+            <span className="stat-inline-label">users</span>
+          </div>
+          <div className="stat-inline">
+            <span className="stat-inline-number">$120K</span>
+            <span className="stat-inline-label">volume</span>
+          </div>
+          <div className="stat-inline">
+            <span className="stat-inline-number">200K+</span>
+            <span className="stat-inline-label">followers</span>
+          </div>
+        </div>
         <div className="hero-cta">
           <a href="mailto:hisakibimam@gmail.com" className="btn-primary">
             Get in touch
           </a>
           <a href="#work" className="btn-secondary">
-            See my work
+            See proof
           </a>
         </div>
       </section>
@@ -143,7 +134,9 @@ export default function Home() {
       <section className="stats" aria-label="Growth highlights">
         {stats.map((stat) => (
           <div className="stat" key={stat.label}>
-            <div className="stat-number">{stat.number}</div>
+            <div className="stat-number">
+              <AnimatedCounter value={stat.number} suffix={stat.suffix} />
+            </div>
             <div className="stat-label">{stat.label}</div>
           </div>
         ))}
@@ -151,11 +144,20 @@ export default function Home() {
 
       <section id="work" className="content-section">
         <h2 className="section-label">Selected Work</h2>
-        {work.map((item) => (
-          <article className="work-item reveal-on-scroll" key={item.company}>
-            <div>
-              <h3 className="work-company">{item.company}</h3>
-              <p className="work-role">{item.role}</p>
+        <div className="work-grid">
+          {work.map((item, index) => (
+            <article
+              className="work-card reveal-on-scroll"
+              key={item.company}
+              style={{ animationDelay: `${index * 100}ms` }}
+            >
+              <div className="work-card-header">
+                <div>
+                  <h3 className="work-company">{item.company}</h3>
+                  <p className="work-role">{item.role}</p>
+                </div>
+                <div className="work-metric">{item.metric}</div>
+              </div>
               <p className="work-desc">{item.description}</p>
               <div className="work-tags" aria-label={`${item.company} skills`}>
                 {item.tags.map((tag) => (
@@ -164,60 +166,96 @@ export default function Home() {
                   </span>
                 ))}
               </div>
-            </div>
-            <time className="work-date">{item.date}</time>
-          </article>
-        ))}
+              <time className="work-date">{item.date}</time>
+            </article>
+          ))}
+        </div>
       </section>
 
-      <section id="writing" className="content-section">
-        <h2 className="section-label">Writing Samples</h2>
-        {writing.map((item) => (
-          <a
-            className="writing-item reveal-on-scroll"
-            href={item.href}
-            key={item.href}
-            rel="noreferrer"
-            target="_blank"
-          >
-            <span>
-              <span className="writing-title">{item.title}</span>
-              <span className="writing-sub">{item.sub}</span>
-            </span>
-            <span className="writing-arrow" aria-hidden="true">
-              &#8599;
-            </span>
-          </a>
-        ))}
-      </section>
-
-      <section className="content-section">
-        <h2 className="section-label">Skills</h2>
-        <div className="skills-grid">
-          {skills.map((skill) => (
-            <div className="skill-block" key={skill.title}>
-              <h3 className="skill-block-title">{skill.title}</h3>
-              <p className="skill-list">
-                {skill.items.map((item, index) => (
-                  <span key={item}>
-                    {item}
-                    {index < skill.items.length - 1 ? <br /> : null}
-                  </span>
-                ))}
-              </p>
+      <section id="proof" className="content-section">
+        <h2 className="section-label">Launch Copy That Performed</h2>
+        <div className="launch-grid">
+          {launchCopy.map((item, index) => (
+            <div
+              className="launch-card reveal-on-scroll"
+              key={item.tweetUrl}
+              style={{ animationDelay: `${index * 100}ms` }}
+            >
+              <div className="launch-header">
+                <div>
+                  <h3 className="launch-title">{item.title}</h3>
+                  <p className="launch-description">{item.description}</p>
+                </div>
+                <div className="launch-views">{item.views} views</div>
+              </div>
+              <div className="tweet-embed">
+                <a
+                  href={item.tweetUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="tweet-link"
+                >
+                  View on X ↗
+                </a>
+              </div>
             </div>
           ))}
         </div>
       </section>
 
+      <section className="content-section" id="services">
+        <h2 className="section-label">What I Do</h2>
+        <div className="services-grid">
+          <div className="service-card reveal-on-scroll">
+            <div className="service-icon">📱</div>
+            <h3 className="service-title">Social Growth</h3>
+            <p className="service-desc">
+              X, Instagram, TikTok. Organic reach, viral content, meme-native strategy. Built 200K+ followers across platforms.
+            </p>
+          </div>
+          <div className="service-card reveal-on-scroll">
+            <div className="service-icon">👥</div>
+            <h3 className="service-title">Community Building</h3>
+            <p className="service-desc">
+              Community activation, engagement loops, token incentives. Onboarded 26K users with zero ad spend.
+            </p>
+          </div>
+          <div className="service-card reveal-on-scroll">
+            <div className="service-icon">🚀</div>
+            <h3 className="service-title">Launch Copy</h3>
+            <p className="service-desc">
+              Product announcements, integration launches, campaign copy. 84K impressions on top post.
+            </p>
+          </div>
+          <div className="service-card reveal-on-scroll">
+            <div className="service-icon">💰</div>
+            <h3 className="service-title">Token Campaigns</h3>
+            <p className="service-desc">
+              Incentive design, volume generation, trading activity. Drove $120K in volume through campaigns.
+            </p>
+          </div>
+          <div className="service-card reveal-on-scroll">
+            <div className="service-icon">🤝</div>
+            <h3 className="service-title">Partnership & BD</h3>
+            <p className="service-desc">
+              Cold outreach, integration closing, founder communication. Closed 6+ high-value partnerships.
+            </p>
+          </div>
+          <div className="service-card reveal-on-scroll">
+            <div className="service-icon">📈</div>
+            <h3 className="service-title">Growth Strategy</h3>
+            <p className="service-desc">
+              Distribution planning, on-chain metrics, retention analysis. Built growth systems from zero.
+            </p>
+          </div>
+        </div>
+      </section>
+
       <section className="contact-section" id="contact">
-        <h2>
-          Let&apos;s work
-          <br />
-          <em>together.</em>
-        </h2>
+        <h2>Let&apos;s work together.</h2>
         <p className="contact-sub">
-          Open to marketing, ghostwriting, growth, and BD roles.
+          Open to: Product marketing, growth content, launch copy, and
+          ghostwriting.
         </p>
         <div className="contact-links">
           <a href="mailto:hisakibimam@gmail.com" className="contact-link">
@@ -238,14 +276,6 @@ export default function Home() {
             target="_blank"
           >
             LinkedIn
-          </a>
-          <a
-            href="https://github.com/Sakibimam"
-            className="contact-link"
-            rel="noreferrer"
-            target="_blank"
-          >
-            GitHub
           </a>
         </div>
       </section>
